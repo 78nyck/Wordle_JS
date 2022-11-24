@@ -23,12 +23,6 @@ console.log("Current Guess: ")
 console.log(AIGuess.word);
 console.log("_______________")
 
-
-const letterSet = new Set(["a", "b", "c", "d", "e", "f", "g", "h", 
-                           "i", "j", "k", "l", "m", "n", "o", "p", 
-                           "q", "r", "s", "t", "u", "v", "w", "x", 
-                           "y", "z"]);
-
 //console.log(mainWord);  
 
 $(".keyboard-letter-box").on("click", function() {
