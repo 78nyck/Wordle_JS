@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="styles.css">
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="wordleWord.js"></script>
+        <script src="formatted-words.js"></script>
+        <script src="wordList.js"></script>
+        <script src="wordleAI.js"></script>
+        <script src="script.js" async></script>
+
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="board">
+            <div class="word-board">
+
+                <div class="word-row">
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                </div>
+    
+                <div class="word-row">
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                </div>
+    
+                <div class="word-row">
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                </div>
+    
+                <div class="word-row">
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                </div>
+    
+                <div class="word-row">
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                </div>
+    
+                <div class="word-row">
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                    <div class="letter-box"><h1 class="letter letter-hidden">O</h1></div>
+                </div>
+    
+            </div>
+    
+            <div class="keyboard">
+    
+                <div class="keyboard-row">
+                    <div class="keyboard-letter-box" id="Q"> <p class="keyboard-letter">Q</p> </div>
+                    <div class="keyboard-letter-box" id="W"> <p class="keyboard-letter">W</p> </div>
+                    <div class="keyboard-letter-box" id="E"> <p class="keyboard-letter">E</p> </div>
+                    <div class="keyboard-letter-box" id="R"> <p class="keyboard-letter">R</p> </div>
+                    <div class="keyboard-letter-box" id="T"> <p class="keyboard-letter">T</p> </div>
+                    <div class="keyboard-letter-box" id="Y"> <p class="keyboard-letter">Y</p> </div>
+                    <div class="keyboard-letter-box" id="U"> <p class="keyboard-letter">U</p> </div>
+                    <div class="keyboard-letter-box" id="I"> <p class="keyboard-letter">I</p> </div>
+                    <div class="keyboard-letter-box" id="O"> <p class="keyboard-letter">O</p> </div>
+                    <div class="keyboard-letter-box" id="P"> <p class="keyboard-letter">P</p> </div>
+                </div>
+    
+                <div class="keyboard-row">
+                    <div class="keyboard-letter-box" id="A"> <p class="keyboard-letter">A</p> </div>
+                    <div class="keyboard-letter-box" id="S"> <p class="keyboard-letter">S</p> </div>
+                    <div class="keyboard-letter-box" id="D"> <p class="keyboard-letter">D</p> </div>
+                    <div class="keyboard-letter-box" id="F"> <p class="keyboard-letter">F</p> </div>
+                    <div class="keyboard-letter-box" id="G"> <p class="keyboard-letter">G</p> </div>
+                    <div class="keyboard-letter-box" id="H"> <p class="keyboard-letter">H</p> </div>
+                    <div class="keyboard-letter-box" id="J"> <p class="keyboard-letter">J</p> </div>
+                    <div class="keyboard-letter-box" id="K"> <p class="keyboard-letter">K</p> </div>
+                    <div class="keyboard-letter-box" id="L"> <p class="keyboard-letter">L</p> </div>
+                </div>
+    
+                <div class="keyboard-row">
+                    <div class="keyboard-letter-box" id="Enter"> <p class="keyboard-letter">Enter</p> </div>
+                    <div class="keyboard-letter-box" id="Z"> <p class="keyboard-letter">Z</p> </div>
+                    <div class="keyboard-letter-box" id="X"> <p class="keyboard-letter">X</p> </div>
+                    <div class="keyboard-letter-box" id="C"> <p class="keyboard-letter">C</p> </div>
+                    <div class="keyboard-letter-box" id="V"> <p class="keyboard-letter">V</p> </div>
+                    <div class="keyboard-letter-box" id="B"> <p class="keyboard-letter">B</p> </div>
+                    <div class="keyboard-letter-box" id="N"> <p class="keyboard-letter">N</p> </div>
+                    <div class="keyboard-letter-box" id="M"> <p class="keyboard-letter">M</p> </div>
+                    <div class="keyboard-letter-box" id="Del"> <p class="keyboard-letter">Del</p> </div>
+                </div>
+    
+            </div>
+        </div>
+    </body>
+
+</html>

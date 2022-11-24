@@ -1,0 +1,14 @@
+{
+  "name": "wordle_js",
+  "version": "1.0.0",
+  "description": "A simple wordle program",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nycklas Redenti",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.6.1"
+  }
+}
