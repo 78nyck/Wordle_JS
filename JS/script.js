@@ -23,27 +23,27 @@ console.log("Current Guess: ")
 console.log(AIGuess.word);
 console.log("_______________")
 
-
-const letterSet = new Set(["a", "b", "c", "d", "e", "f", "g", "h", 
-                           "i", "j", "k", "l", "m", "n", "o", "p", 
-                           "q", "r", "s", "t", "u", "v", "w", "x", 
-                           "y", "z"]);
+let keyFadeDuration = 20;
 
 //console.log(mainWord);  
 
 $(".keyboard-letter-box").on("click", function() {
+    $(this).fadeOut(keyFadeDuration).fadeIn(keyFadeDuration);
     whenClicked(this);
 });
 
 $("body").on("keydown", function(e) {
 
     if (e.key === "Enter") {
+        $("#" + e.key).fadeOut(keyFadeDuration).fadeIn(keyFadeDuration);
         whenClicked($("#" + e.key)[0]);
 
     } else if (e.key === "Backspace") {
+        $("#" + "Del").fadeOut(keyFadeDuration).fadeIn(keyFadeDuration);
         whenClicked($("#" + "Del")[0]);
 
     } else if (letterSet.has(e.key)) {
+        $("#" + e.key.toUpperCase()).fadeOut(keyFadeDuration).fadeIn(keyFadeDuration);
         whenClicked($("#" + e.key.toUpperCase())[0]);
     }
 });
@@ -95,7 +95,8 @@ function whenClicked(element) {
 
             
         } else {
-            console.log("Not in the directory")
+            $(curRow).fadeOut(100).fadeIn(100);
+            
         }
 
     } else {
@@ -159,23 +160,19 @@ function iterateThroughRow(wordMap) {
         if (wordMap.get(index) === "#") {
             $(div).addClass("letter-correct");
 
-            $(keyName).removeClass("letter-wrong");
-            $(keyName).removeClass("letter-in-word");
-            $(keyName).removeClass("letter-correct");
+            $(keyName).removeClass("letter-wrong letter-in-word letter-correct");
             $(keyName).addClass("letter-correct");
+
         } else if (wordMap.get(index) === "-") {
             $(div).addClass("letter-in-word");
 
-            $(keyName).removeClass("letter-wrong");
-            $(keyName).removeClass("letter-in-word");
-            $(keyName).removeClass("letter-correct");
+            $(keyName).removeClass("letter-wrong letter-in-word letter-correct");
             $(keyName).addClass("letter-in-word");
+
         } else {
             $(div).addClass("letter-wrong");
 
-            $(keyName).removeClass("letter-wrong");
-            $(keyName).removeClass("letter-in-word");
-            $(keyName).removeClass("letter-correct");
+            $(keyName).removeClass("letter-wrong letter-in-word letter-correct");
             $(keyName).addClass("letter-wrong");
         }
         index +=1;
