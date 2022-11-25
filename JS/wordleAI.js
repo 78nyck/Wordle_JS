@@ -1,12 +1,12 @@
 class WordleAI{
-    constructor(currentWordSpace = WORDS) {
+    constructor(currentWordSpace = NEW_WORDS) {
         this.currentWordSpace = currentWordSpace;
     }
 
     makeGuess() {
         let maxGuess = new WordleWord("zzzzz");
-        for (let [key, value] of this.currentWordSpace) {
-            let curWord = new WordleWord(key, value);
+        for (let [,value] of this.currentWordSpace) {
+            let curWord = value;
             if (curWord.wordWeight > maxGuess.wordWeight) {
                 maxGuess = curWord;
             }
@@ -31,9 +31,9 @@ class WordleAI{
         }
         
         for (let [key, value] of this.currentWordSpace) {
-            let someWord = new WordleWord(key, value);
+            //let someWord = new WordleWord(key, value);
             let noGreenPosList = new Map();
-            for (let [sWKey, sWValue] of someWord.letterPosDict) {
+            for (let [sWKey, sWValue] of value.letterPosDict) {
                 if (greenSpots.get(sWKey) !== sWValue) {
                     noGreenPosList.set(sWKey, sWValue);
                 }
