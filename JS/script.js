@@ -9,7 +9,7 @@ var curH1 = curLetter.children[0];
 
 var randomWord = NEW_WORDS.get(WORD_LIST.get(getRandNum(WORD_LIST.size)));
 var chosenWord = new WordleWord("vents");
-var mainWord = chosenWord;
+var mainWord = randomWord;
 
 console.log("Main Word: ");
 console.log(mainWord.word);

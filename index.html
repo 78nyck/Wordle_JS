@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <link rel="stylesheet" href="CSS/styles.css">
+        <link rel="stylesheet" href="CSS/navStyles.css">
 
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
@@ -20,12 +21,25 @@
         <!-- Load program logic here-->
         <script src="JS/wordleAI.js" defer></script>
         <script src="JS/script.js" defer></script>
-        
-
+        <script src="JS/overlayScript.js" defer></script>
 
         <title>Document</title>
     </head>
     <body>
+        <header class="nav-space">
+            <div class="overlay-button">
+                <span class="overlay-open">≡</span>
+            </div>
+        </header>
+
+        <div id="myNav" class="overlay">
+            <span class="overlay-close">X</span>
+            <div class="overlay-content">
+                <a href="#">About</a>
+                <a href="settings.html">Settings</a>
+            </div>
+        </div>
+        
         <div class="board">
             <div class="word-board">
 
