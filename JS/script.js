@@ -7,9 +7,9 @@ var curLetterIndex = 0;
 var curLetter = curRow.children[curLetterIndex];
 var curH1 = curLetter.children[0];
 
-var randomWord = WORD_LIST.get(getRandNum(WORD_LIST.size));
-var chosenWord = "prime"
-var mainWord = new WordleWord(randomWord);
+var randomWord = NEW_WORDS.get(WORD_LIST.get(getRandNum(WORD_LIST.size)));
+var chosenWord = new WordleWord("vents");
+var mainWord = chosenWord;
 
 console.log("Main Word: ");
 console.log(mainWord.word);
@@ -70,7 +70,7 @@ function whenClicked(element) {
     } else if (letter == "Enter") {
         let fullWord = getFullWord().toLowerCase();
 
-        if (WORDS.has(fullWord) && curRowIndex <= 4) {
+        if (NEW_WORDS.has(fullWord) && curRowIndex <= 4) {
             console.log("was in");
 
             let myWord = new WordleWord(fullWord);
@@ -85,7 +85,7 @@ function whenClicked(element) {
             iterateThroughRow(wordMap);
             resetValues(curRowIndex + 1);
 
-        } else if (WORDS.has(fullWord) && curRowIndex == 5) {
+        } else if (NEW_WORDS.has(fullWord) && curRowIndex == 5) {
             console.log("was in");
 
             

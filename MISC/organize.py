@@ -1,11 +1,11 @@
 
-words = open("words.txt", "r")
-wordsFormatted = open("formatted-words.txt", "w")
+words = open("MISC/words.txt", "r")
+wordsFormatted = open("JS/constants/new-formatted-words.txt", "w")
 
 toWrite = "new Map(["
 index = 0
 for line in words:
-    toWrite = toWrite + "[new WordleWord(" + '"' + line.strip() + '"' + ")" + ", " + str(index)  + "], "
+    toWrite = toWrite + "[" +  '"' + line.strip() + '"' + ", new WordleWord(" + '"' + line.strip() + '"' + ")" "], "
     index+=1
 
 wordsFormatted.write(toWrite)

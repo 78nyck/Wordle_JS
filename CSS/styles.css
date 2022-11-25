@@ -3,9 +3,15 @@ body {
 }
 
 
+.board {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
 .word-board {
     margin: 0 auto;
-    width: 25%;
+    width: 325px;
 }
 
 .word-row {
@@ -29,9 +35,12 @@ body {
 }
 
 .keyboard {
-    margin: 0 auto;
-    width: 40%;
-    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding-top: 50px;
+    align-items: center;
+    
 }
 
 .keyboard-row {
@@ -40,7 +49,7 @@ body {
 }
 
 .keyboard-letter-box {
-    flex: 1 1 auto;
+    flex: 0 1 auto;
 
     border-radius: 10px;
     border-style: ridge;
@@ -54,6 +63,14 @@ body {
 
     text-align: center;
     font-family: "Courier New", monospace;
+    width: 55px; 
+}
+
+#Del {
+    width: 88px;
+}
+#Enter {
+    width: 88px;
 }
 
 .letter {
