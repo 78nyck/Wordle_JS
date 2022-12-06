@@ -1,4 +1,7 @@
-wordBoard = $(".word-board")[0];
+var wordBoard = $(".word-board")[0];
+
+let wordBoardCopy = $(".word-board").clone();
+let keyboardCopy = $(".keyboard").clone();
 
 var curRowIndex = 0;
 var curRow = wordBoard.children[curRowIndex];
@@ -7,14 +10,17 @@ var curLetterIndex = 0;
 var curLetter = curRow.children[curLetterIndex];
 var curH1 = curLetter.children[0];
 
-var randomWord = NEW_WORDS.get(WORD_LIST.get(getRandNum(WORD_LIST.size)));
+var randomWord = NEW_WORDS.get(WORD_LIST.get(WordleGameHelper.getRandNum(WORD_LIST.size)));
 var chosenWord = new WordleWord("vents");
 var mainWord = randomWord;
 
+/*
 console.log("Main Word: ");
 console.log(mainWord.word);
 console.log("___________") 
+*/
 
+/*
 var myAI = new WordleAI();
 let myStartWord = new WordleWord("audio");
 let AIGuess = myStartWord//myAI.makeGuess();
@@ -22,8 +28,12 @@ myAI.reduceWordSpace(AIGuess, mainWord.compareWordToSelf(AIGuess));
 console.log("Current Guess: ")
 console.log(AIGuess.word);
 console.log("_______________")
+*/
 
+let userData = new PlayerData();
 let keyFadeDuration = 20;
+
+aiPlayNGames(30000);
 
 //console.log(mainWord);  
 
@@ -52,7 +62,7 @@ $("body").on("keydown", function(e) {
 
 function whenClicked(element) {
     
-    letter = element.children[0].innerHTML;
+    let letter = element.children[0].innerHTML;
 
     if (letter == "Del") {
         if (curLetterIndex == 0 && !$(curH1).hasClass("letter-hidden")) {
@@ -70,33 +80,42 @@ function whenClicked(element) {
     } else if (letter == "Enter") {
         let fullWord = getFullWord().toLowerCase();
 
-        if (NEW_WORDS.has(fullWord) && curRowIndex <= 4) {
-            console.log("was in");
+        if (fullWord === mainWord.word) {
+            let myWord = new WordleWord(fullWord);
+            let wordMap = mainWord.compareWordToSelf(myWord);
+            userData.addData(curRowIndex + 1);
+            iterateThroughRow(wordMap);
+            resetGame();
+            return "done"
+
+        } else if (NEW_WORDS.has(fullWord) && curRowIndex <= 4) {
+            //console.log("was in");
 
             let myWord = new WordleWord(fullWord);
             let wordMap = mainWord.compareWordToSelf(myWord);
 
-            let AIGuess = myAI.makeGuess();
+            /*
+            AIGuess = myAI.makeGuess();
             console.log("Current Guess: ")
             console.log(AIGuess.word);
             console.log("_______________")
             myAI.reduceWordSpace(AIGuess, mainWord.compareWordToSelf(AIGuess));
-            
+            */
             iterateThroughRow(wordMap);
             resetValues(curRowIndex + 1);
 
         } else if (NEW_WORDS.has(fullWord) && curRowIndex == 5) {
-            console.log("was in");
+            //console.log("was in");
 
-            
             let myWord = new WordleWord(fullWord);
             let wordMap = mainWord.compareWordToSelf(myWord);
+            userData.addData(7);
             iterateThroughRow(wordMap);
-
+            resetGame()
+            return "done"
             
         } else {
-            $(curRow).fadeOut(100).fadeIn(100);
-            
+            $(curRow).fadeOut(100).fadeIn(100);  
         }
 
     } else {
@@ -149,10 +168,6 @@ function getFullWord() {
     return theWord;
 }
 
-function getRandNum(max) {
-    return Math.floor(Math.random() * max);
-}
-
 function iterateThroughRow(wordMap) {
     let index = 0;
     for (let div of curRow.children) {
@@ -178,4 +193,56 @@ function iterateThroughRow(wordMap) {
         index +=1;
     }
 }
+
+function resetGame() {
+    $(".word-board").replaceWith(wordBoardCopy.clone());
+    wordBoard = $(".word-board")[0];
+    $(".keyboard").replaceWith(keyboardCopy.clone());
+
+    curRowIndex = 0;
+    curRow = wordBoard.children[curRowIndex];
+
+    curLetterIndex = 0;
+    curLetter = curRow.children[curLetterIndex];
+    curH1 = curLetter.children[0];
+
+    randomWord = NEW_WORDS.get(WORD_LIST.get(WordleGameHelper.getRandNum(WORD_LIST.size)));
+    chosenWord = new WordleWord("vents");
+    mainWord = randomWord;
+    /*
+    console.log("Main Word: ");
+    console.log(mainWord.word);
+    console.log("___________")
+    */ 
+
+    /*
+    myAI = new WordleAI();
+    myStartWord = new WordleWord("audio");
+    AIGuess = myStartWord//myAI.makeGuess();
+    myAI.reduceWordSpace(AIGuess, mainWord.compareWordToSelf(AIGuess));
+    console.log("Current Guess: ")
+    console.log(AIGuess.word);
+    console.log("_______________")
+    */
+}
+
+function aiPlayNGames(n) {
+    for (let i = 0; i < n; i++) {
+        let newAI = new WordleAI();
+        
+        while (true) {
+            let newAIGuess = newAI.makeGuess();
+            let letterPlacement = mainWord.compareWordToSelf(newAIGuess);
+            newAI.reduceWordSpace(newAIGuess, letterPlacement);
+            for (ch of newAIGuess.word) {
+                whenClicked($("#" + ch.toUpperCase())[0]);
+            }
+            if (whenClicked($("#Enter")[0]) === "done") {
+                break;
+            }
+        }
+    }
+    userData.displayStats();
+}
+
 

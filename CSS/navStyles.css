@@ -16,6 +16,7 @@
     width: 100%;
     text-align: center;
     margin-top: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .overlay a {
@@ -28,15 +29,17 @@
 }
 
 .overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
+    color: #e4e4e4;
 }
+
 
 .overlay .overlay-close {
     position: absolute;
     top: 20px;
     right: 45px;
     font-size: xx-large;
-    color: #f1f1f1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #c9c5c5;
 }
 .nav-space {
     background-color:silver;
@@ -48,4 +51,12 @@
 .overlay-open {
     font-size: xx-large;
     margin-left: 10px;
+    text-decoration: none;
+    color: black;
+    transition: 0.1s;
 }
+
+.overlay-open:hover, .overlay-open:focus {
+    color: #5c5c5c;
+}
+

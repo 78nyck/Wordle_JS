@@ -5,22 +5,41 @@ class WordleAI{
 
     makeGuess() {
         let maxGuess = new WordleWord("zzzzz");
+        let topFive = [];
         for (let [,value] of this.currentWordSpace) {
             let curWord = value;
-            if (curWord.wordWeight > maxGuess.wordWeight) {
+            if (curWord.wordWeight >= maxGuess.wordWeight) {
                 maxGuess = curWord;
+                topFive.unshift(maxGuess);
+            }
+            if (topFive.length > 5) {
+                topFive.pop();
             }
         }
+        /*
+        console.log("Top 5:");
+        console.log("+------------+");
+        topFive.forEach(function(word) {
+            if (("|" + word.word + " " + word.wordWeight + "|").length === 12) {
+                console.log("| " + word.word + " " + word.wordWeight + " |")
+            } else {
+            console.log("|" + word.word + " " + word.wordWeight + " |")
+            }
+            
+        })
+        console.log("+------------+");
+        */
         return maxGuess;
     }
 
     reduceWordSpace(wordleWord, letterPlacement) {
-        let greenSpots = this.reduceByGreenSpots(wordleWord, letterPlacement)
-        let orangeSpots = this.reduceByOrangeSpots(greenSpots, wordleWord, letterPlacement);
-        let graySpots = this.reduceByGraySpots(greenSpots, orangeSpots, wordleWord, letterPlacement);
+        let greenSpots = this.#reduceByGreenSpots(wordleWord, letterPlacement)
+        let orangeSpots = this.#reduceByOrangeSpots(greenSpots, wordleWord, letterPlacement);
+        let graySpots = this.#reduceByGraySpots(greenSpots, orangeSpots, wordleWord, letterPlacement);
         return this.currentWordSpace;
     }
-    reduceByOrangeSpots(greenSpots, wordleWord, letterPlacement) {
+
+    #reduceByOrangeSpots(greenSpots, wordleWord, letterPlacement) {
         let newWordSpace = new Map();
         let orangeSpots = new Map();
 
@@ -53,7 +72,7 @@ class WordleAI{
         return orangeSpots;
     }
 
-    reduceByGraySpots(greenSpots, orangeSpots, wordleWord, letterPlacement) {
+    #reduceByGraySpots(greenSpots, orangeSpots, wordleWord, letterPlacement) {
         let newWordSpace = new Map();
         let graySpots = new Map();
 
@@ -100,9 +119,7 @@ class WordleAI{
         return graySpots;
     }
 
-            
-
-    reduceByGreenSpots(wordleWord, letterPlacement) {
+    #reduceByGreenSpots(wordleWord, letterPlacement) {
         let newWordSpace = new Map();
         let greenSpots = new Map();
         

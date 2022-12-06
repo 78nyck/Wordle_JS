@@ -2,15 +2,15 @@ class WordleWord{
     constructor(word) {
         
         this.word = word;
-        this.letterCount = WordleWord.getLetterCount(word);
+        this.letterCount = WordleGameHelper.getLetterCount(word);
         this.letterList = this.word.split("");
-        this.letterPosDict = WordleWord.convertWordToPosDict(word);
-        this.wordWeight = WordleWord.getWordWeight(this.letterCount);
+        this.letterPosDict = WordleGameHelper.convertWordToPosDict(word);
+        this.wordWeight = WordleGameHelper.getWordWeight(this.letterCount);
     }
 
     compareWordToSelf(wordToCompWith) {
         let letterPlacement = new Map();
-        let wordUseFrequency = WordleWord.convertWordToLetterCount(this.word, this.letterCount);
+        let wordUseFrequency = WordleGameHelper.mapDeepCopy(this.letterCount);
 
         for (let [key, value] of wordToCompWith.letterPosDict) {
             
@@ -39,50 +39,4 @@ class WordleWord{
         }
         return letterPlacement;
     }
-
-    static convertWordToPosDict(word) {
-        let index = 0;
-        let wordPosDict = new Map();
-
-        for (const ch of word) {
-            wordPosDict.set(index, ch);
-            index += 1;
-        }
-        return wordPosDict;
-    }
-
-    static getLetterCount(word) {
-        let letterCount = new Map();
-        for (let ch of word) {
-            if (letterCount.get(ch) === undefined) {
-                letterCount.set(ch, 1);
-            } else {
-                letterCount.set(ch, letterCount.get(ch) + 1);
-            }
-        }
-        return letterCount;
-    }
-
-    static convertWordToLetterCount(word, letterFreq) {
-        let letterCountDict = new Map();
-        for (let ch of word) {
-            letterCountDict.set(ch, letterFreq.get(ch));
-        }
-        return letterCountDict;
-    }
-
-    static getWordWeight(wordDict) {
-        let sum = 0;
-        for (let [key, value] of wordDict) {
-            sum += LETTER_WEIGHTS.get(key) * value;
-        }
-
-        for (let [key, value] of wordDict) {
-            if (value >=2) {
-                sum = sum - (LETTER_WEIGHTS.get(key) * (value - 1));
-            }
-        }
-        return Math.ceil(sum * 100) / 100;
-    }
-
 }

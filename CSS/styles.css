@@ -2,7 +2,6 @@ body {
     background-color: #404040;
 }
 
-
 .board {
     display: flex;
     flex-direction: column;
@@ -45,7 +44,6 @@ body {
 
 .keyboard-row {
     display: flex;
-
 }
 
 .keyboard-letter-box {
